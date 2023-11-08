@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import React, { ReactNode } from 'react';
 
 interface CardDataStatsProps {
@@ -10,6 +12,7 @@ interface CardDataStatsProps {
 }
 
 const CardDataStats: React.FC<CardDataStatsProps> = ({
+  key,
   title,
   post,
   rate,
@@ -17,6 +20,10 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
   levelDown,
   children,
 }) => {
+  const router = useRouter();
+  const handleClick = (key) => {
+   return router.push(`/post/${title}`);
+  };
   return (
     <div className="rounded-sm border border-stroke bg-white py-8 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
       {/* <div className="flex h-11.5 w-11.5 items-center justify-center rounded-full bg-meta-2 dark:bg-meta-4">
@@ -31,12 +38,15 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
           <span className="text-sm font-medium">{post.slice(0,120)}</span>
         </div>
 
-        <span
+        <button
           className={`flex items-center gap-1 text-sm font-medium ${
             levelUp && 'text-meta-3'
           } ${levelDown && 'text-meta-5'} `}
+          onClick={handleClick}
         >
-          {rate}
+                  
+            {rate}
+          
 
           {levelUp && (
             <svg
@@ -69,7 +79,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
               />
             </svg>
           )}
-        </span>
+        </button>
       </div>
     </div>
   );

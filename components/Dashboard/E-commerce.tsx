@@ -44,7 +44,7 @@ const ECommerce: React.FC = () => {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-3 2xl:gap-7.5">
         {allPosts.map((post) => (
           <CardDataStats
-            key={post.id} // Assuming the 'id' property exists in your data
+            key={post.id} 
             title={post.title}
             post={post.body}
             rate="read"
