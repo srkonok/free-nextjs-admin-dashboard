@@ -1,8 +1,10 @@
+"use client"
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { ReactNode } from 'react';
 
 interface CardDataStatsProps {
+  sKey:number;
   post: string;
   title: string;
   rate: string;
@@ -10,19 +12,21 @@ interface CardDataStatsProps {
   levelDown?: boolean;
   children: ReactNode;
 }
-
+type Props = {
+  searchParams: Record<string, string> | null | undefined;
+};
 const CardDataStats: React.FC<CardDataStatsProps> = ({
-  key,
+  sKey,
   title,
   post,
   rate,
   levelUp,
   levelDown,
-  children,
+  children
 }) => {
   const router = useRouter();
-  const handleClick = (key) => {
-   return router.push(`/post/${title}`);
+  const handleClick = () => {
+   return router.push(`/post?sKey=${sKey}&modal=true`);
   };
   return (
     <div className="rounded-sm border border-stroke bg-white py-8 px-7.5 shadow-default dark:border-strokedark dark:bg-boxdark">
@@ -42,6 +46,7 @@ const CardDataStats: React.FC<CardDataStatsProps> = ({
           className={`flex items-center gap-1 text-sm font-medium ${
             levelUp && 'text-meta-3'
           } ${levelDown && 'text-meta-5'} `}
+          
           onClick={handleClick}
         >
                   

@@ -45,6 +45,7 @@ const ECommerce: React.FC = () => {
         {allPosts.map((post) => (
           <CardDataStats
             key={post.id} 
+            sKey={post.id}
             title={post.title}
             post={post.body}
             rate="read"
