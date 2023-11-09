@@ -24,7 +24,7 @@ export default function Page({params}: Props) {
         setData(resp);
       };
       fetchPosts();
-    }, []);
+    }, [sKey]);
   return (
     <>
       {showModal && <PostView title={data.title} body={data.body}/>}
